@@ -1,13 +1,15 @@
 package com.devsuperior.dscommerce.entities;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.util.*;
 
 @Entity
 @Table(name = "tb_user")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,28 +52,59 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
-    public String getEmail() {
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getPhone() {
-        return phone;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public LocalDate getBirthDate() {
@@ -82,21 +115,30 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public String getEmail() {
+        return email;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void addRole(Role role) {
         roles.add(role);
     }
@@ -123,4 +165,8 @@ public class User {
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
     }
+
+
 }
+
+
