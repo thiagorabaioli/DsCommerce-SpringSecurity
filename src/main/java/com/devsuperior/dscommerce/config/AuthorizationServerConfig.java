@@ -89,7 +89,7 @@ public class AuthorizationServerConfig {
 	public OAuth2AuthorizationService authorizationService() {
 		return new InMemoryOAuth2AuthorizationService();
 	}
-	
+
 
 	@Bean
 	public OAuth2AuthorizationConsentService oAuth2AuthorizationConsentService() {
