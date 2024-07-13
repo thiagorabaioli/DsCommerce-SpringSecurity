@@ -1,4 +1,4 @@
-package com.devsuperior.demo.config.customgrant;
+package com.devsuperior.dscommerce.config.customgrant;
 
 import java.util.Collections;
 import java.util.HashSet;
