@@ -1,6 +1,7 @@
 package com.devsuperior.dscommerce.dto;
 
 import com.devsuperior.dscommerce.entities.Order;
+import com.devsuperior.dscommerce.entities.OrderItem;
 import com.devsuperior.dscommerce.entities.OrderStatus;
 import org.springframework.security.core.parameters.P;
 
@@ -22,7 +23,10 @@ public class OrderDTO {
         status = entity.getStatus();
         client = new ClientDTO(entity.getClient()); // entity.getClient() returns a User object
         payment = (entity.getPayment() == null) ? null : new PaymentDTO(entity.getPayment()); // entity.getPayment() returns a Payment object
-       // entity.getItems().forEach(item -> items.add(new OrderItemDTO(item)));
+        //entity.getItems().forEach(item -> items.add(new OrderItemDTO(item)));
+        for (OrderItem item : entity.getItems()) {
+            items.add(new OrderItemDTO(item));
+        }
     }
 
     public OrderDTO(Long id, Instant moment, OrderStatus status, ClientDTO client, PaymentDTO payment) {
