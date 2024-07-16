@@ -3,6 +3,7 @@ package com.devsuperior.dscommerce.dto;
 import com.devsuperior.dscommerce.entities.Order;
 import com.devsuperior.dscommerce.entities.OrderItem;
 import com.devsuperior.dscommerce.entities.OrderStatus;
+import jakarta.validation.constraints.NotEmpty;
 import org.springframework.security.core.parameters.P;
 
 import java.time.Instant;
@@ -15,6 +16,8 @@ public class OrderDTO {
     private OrderStatus status;
     private ClientDTO client;
     private PaymentDTO payment;
+
+
     private List<OrderItemDTO> items = new ArrayList<>();
 
     public OrderDTO(Order entity) {
