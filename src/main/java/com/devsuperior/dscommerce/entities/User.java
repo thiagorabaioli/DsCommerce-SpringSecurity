@@ -150,6 +150,15 @@ public class User implements UserDetails {
         }
         return false;
     }
+     public boolean hasHoleAdmin(String roleName){
+       for(Role role : roles){
+              if(role.getAuthority().equals(roleName)){
+                return true;
+              }
+
+       }
+       return false;
+     }
 
     @Override
     public boolean equals(Object o) {
